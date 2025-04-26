@@ -22,3 +22,4 @@ target_link_libraries(test.core.thread_pool PRIVATE sb::core)
 
 add_core_test(utility)
 add_core_test(lru_cache)
+add_core_test(generator)
