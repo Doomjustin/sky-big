@@ -9,6 +9,10 @@
 namespace sb::log {
 
 class FormattableAppender: public Appender {
+private:
+    std::unique_ptr<Formatter> formatter_;
+    std::string pattern_;
+
 public:
     FormattableAppender(std::unique_ptr<Formatter> formatter);
 
@@ -24,10 +28,6 @@ public:
 
 protected:
     std::string format(const Entry& entry) const;
-
-private:
-    std::unique_ptr<Formatter> formatter_;
-    std::string pattern_;
 };
 
 } // namespace sb::log

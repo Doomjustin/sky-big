@@ -12,6 +12,11 @@
 namespace sb::log {
 
 class SimpleLogger: public Logger {
+protected:
+    std::string name_;
+    LogLevel level_ = LogLevel::Debug;
+    std::vector<std::unique_ptr<FormattableAppender>> appenders_;
+
 public:
     explicit SimpleLogger(std::string_view name);
 
@@ -38,11 +43,6 @@ public:
     void write(Entry entry) const;
 
     void add_appender(std::unique_ptr<FormattableAppender> appender) noexcept;
-
-protected:
-    std::string name_;
-    LogLevel level_ = LogLevel::Debug;
-    std::vector<std::unique_ptr<FormattableAppender>> appenders_;
 };
 
 } // namespace sb::log

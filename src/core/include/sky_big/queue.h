@@ -10,6 +10,10 @@ namespace sb::concurrency {
 
 template<typename T, typename Sequence = std::deque<T>>
 class Queue {
+private:
+    std::queue<T, Sequence> queue_;
+    mutable std::mutex m_;
+
 public:
     T pop()
     {
@@ -48,10 +52,6 @@ public:
         std::lock_guard<std::mutex> locker{ m_ };
         return queue_.empty();
     }
-
-private:
-    std::queue<T, Sequence> queue_;
-    mutable std::mutex m_;
 };
 
 } // namespace sb::concurrency

@@ -25,6 +25,10 @@ include(CopyDllsForDebug)
 
 find_lto(CXX)
 
+if (${PROJECT_NAME}_BUILD_TESTS)
+    include(AddCatch2)
+    list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+endif()
 
 add_subdirectory(third-party EXCLUDE_FROM_ALL)
 

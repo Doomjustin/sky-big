@@ -19,7 +19,7 @@ add_library(sb_core
 
 add_library(sb::core ALIAS sb_core)
 
-target_link_libraries(sb_core PUBLIC internal_dependency)
+target_link_libraries(sb_core PUBLIC sb::dependency)
 
 target_include_directories(sb_core 
     INTERFACE 

@@ -19,9 +19,10 @@ target_compile_features(spdlog INTERFACE cxx_std_23)
 
 set(BUILD_TESTING ${BUILD_TESTING_BCKP} CACHE BOOL "Build tests (default variable for CTest)" FORCE)
 
-add_library(internal_dependency INTERFACE)
-target_compile_features(internal_dependency INTERFACE cxx_std_23)
-target_link_libraries(internal_dependency
+add_library(sb_dependency INTERFACE)
+add_library(sb::dependency ALIAS sb_dependency)
+target_compile_features(sb_dependency INTERFACE cxx_std_23)
+target_link_libraries(sb_dependency
     INTERFACE
         gsl::gsl
         fmt::fmt

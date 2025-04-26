@@ -18,6 +18,10 @@ public:
     struct promise_type;
     using HandleType = std::coroutine_handle<promise_type>;
 
+private:
+    HandleType handle_;
+
+public:
     struct promise_type {
         std::optional<T> value;
 
@@ -106,9 +110,6 @@ public:
     }
 
     std::default_sentinel_t end() { return {}; }
-
-private:
-    HandleType handle_;
 };
 
 

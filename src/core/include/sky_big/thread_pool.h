@@ -71,6 +71,13 @@ public:
 
 
 class ThreadPool {
+private:
+    std::vector<std::jthread> threads_;
+    concurrency::Queue<Function> work_queue_;
+    std::mutex m_;
+    std::condition_variable cv_;
+    std::atomic<bool> done_{ false };
+
 public:
     explicit ThreadPool(unsigned size);
 
@@ -91,13 +98,6 @@ public:
     void stop();
 
 private:
-    std::vector<std::jthread> threads_;
-    concurrency::Queue<Function> work_queue_;
-    std::mutex m_;
-    std::condition_variable cv_;
-
-    std::atomic<bool> done_{ false };
-
     void work_thread();
 };
 

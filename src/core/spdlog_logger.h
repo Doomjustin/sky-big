@@ -12,6 +12,10 @@
 namespace sb {
 
 class SpdLogLogger: public Logger {
+private:
+    std::shared_ptr<spdlog::logger> logger_;
+    std::vector<spdlog::sink_ptr> sinks_;
+
 public:
     explicit SpdLogLogger(std::string_view name);
 
@@ -36,9 +40,6 @@ public:
     void level(LogLevel new_level) noexcept override;
 
 private:
-    std::shared_ptr<spdlog::logger> logger_;
-    std::vector<spdlog::sink_ptr> sinks_;
-
     static std::string make_message(std::string_view message, std::source_location cur);
 };
 

@@ -10,6 +10,10 @@
 namespace sb {
 
 class BaseValue: Noncopyable {
+protected:
+    void* value_ = nullptr;
+    std::type_index type_;
+
 public:
     virtual ~BaseValue() = default;
 
@@ -33,9 +37,6 @@ public:
     }
 
 protected:
-    void* value_ = nullptr;
-    std::type_index type_;
-
     template<typename T>
     explicit BaseValue(T)
       : value_{ nullptr },

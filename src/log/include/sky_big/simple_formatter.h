@@ -22,24 +22,13 @@ namespace sb::log {
  */
 class SimpleFormatter: public Formatter {
 public:
-    explicit SimpleFormatter(std::string_view pattern);
-
-    SimpleFormatter(const SimpleFormatter& other) = delete;
-    SimpleFormatter& operator=(const SimpleFormatter& other) = delete;
-
-    SimpleFormatter(SimpleFormatter&& other) noexcept = default;
-    SimpleFormatter& operator=(SimpleFormatter&& other) noexcept = default;
-
-    ~SimpleFormatter() = default;
-
-    std::string format(const Entry& entry) const override;
-
     struct Item {
         virtual ~Item() = default;
 
         virtual std::string format(const Entry& entry) = 0;
     };
 
+    
 private:
     static constexpr char Leader = '%';
     static constexpr char Message = 'v';
@@ -56,6 +45,20 @@ private:
     std::string pattern_;
     std::map<char, std::unique_ptr<Item>> items_{};
 
+public:
+    explicit SimpleFormatter(std::string_view pattern);
+
+    SimpleFormatter(const SimpleFormatter& other) = delete;
+    SimpleFormatter& operator=(const SimpleFormatter& other) = delete;
+
+    SimpleFormatter(SimpleFormatter&& other) noexcept = default;
+    SimpleFormatter& operator=(SimpleFormatter&& other) noexcept = default;
+
+    ~SimpleFormatter() = default;
+
+    std::string format(const Entry& entry) const override;
+
+private:
     std::string convert(char c, const Entry& entry) const;
 };
 

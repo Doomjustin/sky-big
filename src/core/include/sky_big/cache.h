@@ -53,6 +53,14 @@ private:
         }
     };
 
+    std::size_t capacity_;
+    std::unordered_map<std::string, Node> values_;
+
+    Node head_{};
+    Node tail_{};
+
+    std::mutex m_; // TODO: 锁的粒度是否太大？目前感觉还行
+
 public:
     explicit LRUCache(std::size_t capacity)
       : capacity_{ capacity }
@@ -105,14 +113,6 @@ public:
     }
 
 private:
-    std::size_t capacity_;
-    std::unordered_map<std::string, Node> values_;
-
-    Node head_{};
-    Node tail_{};
-
-    std::mutex m_; // TODO: 锁的粒度是否太大？目前感觉还行
-
     using iterator = typename std::unordered_map<std::string, Node>::iterator;
     using const_iterator = typename std::unordered_map<std::string, Node>::const_iterator;
 
