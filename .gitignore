@@ -50,3 +50,6 @@ out/
 
 # customer
 **/config.h
+
+# virtual env
+.venv/
