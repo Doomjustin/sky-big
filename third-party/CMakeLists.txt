@@ -16,8 +16,6 @@ target_compile_definitions(spdlog INTERFACE SPDLOG_FMT_EXTERNAL)
 target_set_warnings(spdlog DISABLE ALL)
 target_compile_features(spdlog INTERFACE cxx_std_23)
 
-# add_subdirectory(Catch2 EXCLUDE_FROM_ALL)
-
 
 set(BUILD_TESTING ${BUILD_TESTING_BCKP} CACHE BOOL "Build tests (default variable for CTest)" FORCE)
 

@@ -21,7 +21,6 @@ include(ConfigSafeGuards)
 include(Colors)
 include(Warnings)
 include(LTO)
-include(Coverage)
 include(CopyDllsForDebug)
 
 find_lto(CXX)
@@ -31,15 +30,3 @@ add_subdirectory(third-party EXCLUDE_FROM_ALL)
 
 add_subdirectory(app)
 add_subdirectory(src)
-
-if(${PROJECT_NAME}_BUILD_TESTS)
-    set(TEST_RUNNER_PARAMS "--force-colors=true" CACHE STRING "Options to add to our test runners commands")
-    list(APPEND CUSTOM_COVERAGE_EXCLUDE "/test/")
-    add_subdirectory(test)
-
-    configure_file(
-        ${CMAKE_CURRENT_LIST_DIR}/cmake/CTestCustom.cmake.in
-        ${CMAKE_CURRENT_BINARY_DIR}/CTestCustom.cmake
-        @ONLY
-    )
-endif()
