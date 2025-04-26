@@ -20,6 +20,9 @@ endfunction()
 add_executable(test.core.thread_pool test_thread_pool.cpp)
 target_link_libraries(test.core.thread_pool PRIVATE sb::core)
 
+add_executable(test.core.log test_log.cpp)
+target_link_libraries(test.core.log PRIVATE sb::core)
+
 add_core_test(utility)
 add_core_test(lru_cache)
 add_core_test(generator)

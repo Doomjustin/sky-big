@@ -2,10 +2,18 @@ configure_file(config.h.in ${CMAKE_CURRENT_LIST_DIR}/include/sky_big/config.h @O
 
 add_library(sb_core
     STATIC
+        include/sky_big/cache.h
         include/sky_big/config.h
+        include/sky_big/generator.h
+        include/sky_big/log.h
+        include/sky_big/noncopyable.h
         include/sky_big/queue.h
         include/sky_big/thread_pool.h
         include/sky_big/utility.h
+        include/sky_big/value.h
+        log.cpp
+        spdlog_logger.cpp
+        spdlog_logger.h
         thread_pool.cpp
 )
 
