@@ -19,11 +19,11 @@ target_compile_features(spdlog INTERFACE cxx_std_23)
 add_subdirectory(Catch2 EXCLUDE_FROM_ALL)
 
 
-set(BUILD_TESTING ${BUILD_TESTING_BCKP} CACHE BOOL "Build tests (default variable for CTest)" FORCE) #Set it back to its past value
+set(BUILD_TESTING ${BUILD_TESTING_BCKP} CACHE BOOL "Build tests (default variable for CTest)" FORCE)
 
-add_library(base INTERFACE)
-target_compile_features(base INTERFACE cxx_std_23)
-target_link_libraries(base
+add_library(internal_dependency INTERFACE)
+target_compile_features(internal_dependency INTERFACE cxx_std_23)
+target_link_libraries(internal_dependency
     INTERFACE
         gsl::gsl
         fmt::fmt
