@@ -48,16 +48,20 @@ Logger* default_logger() noexcept;
 } // namespace sb
 
 
-#define LOG_FATAL(...) sb::default_logger()->fatal(fmt::format(__VA_ARGS__));
+#if defined(SKY_BIG_DEBUG)
+    #define LOG_FATAL(...) sb::default_logger()->fatal(fmt::format(__VA_ARGS__));
+    #define LOG_ERROR(...) sb::default_logger()->error(fmt::format(__VA_ARGS__));
+    #define LOG_WARNING(...) sb::default_logger()->warning(fmt::format(__VA_ARGS__));
+    #define LOG_DEBUG(...) sb::default_logger()->debug(fmt::format(__VA_ARGS__));
+    #define LOG_INFO(...) sb::default_logger()->info(fmt::format(__VA_ARGS__));
+    #define LOG_TRACE(...) sb::default_logger()->trace(fmt::format(__VA_ARGS__));
+#else
+    #define LOG_FATAL(...);
+    #define LOG_ERROR(...);
+    #define LOG_WARNING(...);
+    #define LOG_DEBUG(...);
+    #define LOG_INFO(...);
+    #define LOG_TRACE(...);
+#endif // !defined(SKY_BIG_DEBUG)
 
-#define LOG_ERROR(...) sb::default_logger()->error(fmt::format(__VA_ARGS__));
-
-#define LOG_WARNING(...) sb::default_logger()->warning(fmt::format(__VA_ARGS__));
-
-#define LOG_DEBUG(...) sb::default_logger()->debug(fmt::format(__VA_ARGS__));
-
-#define LOG_INFO(...) sb::default_logger()->info(fmt::format(__VA_ARGS__));
-
-#define LOG_TRACE(...) sb::default_logger()->trace(fmt::format(__VA_ARGS__));
-
-#endif // SKY_BIG_LOG_H
+#endif // !SKY_BIG_LOG_H
