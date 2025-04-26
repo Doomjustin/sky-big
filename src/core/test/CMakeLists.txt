@@ -18,3 +18,6 @@ endfunction()
 
 
 add_core_test(utility)
+
+add_executable(test.core.thread_pool test_thread_pool.cpp)
+target_link_libraries(test.core.thread_pool PRIVATE sb::core)
